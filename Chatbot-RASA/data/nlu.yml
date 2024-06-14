@@ -1,0 +1,83 @@
+version: "3.1"
+nlu:
+
+- intent: get_cup
+  examples: |
+    - i'm thirsty
+    - can you get me a drink?
+    - i want to quench my thirst
+    - i want something to drink
+    - can i have some water, please?
+    - i want a drink
+    - get me that cup of water
+    - can you get that cup for me?
+    - go and get the cup
+    - bring me the cup of water
+    - carry that cup to me
+    - pick up the cup for me
+    - bring me that drink
+
+- intent: sort_candy
+  examples: |
+    - i want you to sort the candy
+    - can you arrange the sugus candy
+    - can you sort the [strawberry](flavour) candies?
+    - can you arrange the [orange](flavour) sugus candy?
+    - categorize the [blackcurrant](flavour) candies
+    - seperate the [orange](flavour) candies out
+    - sort the candies for me
+    - classify the candy
+    - divide the [orange](flavour) sugus out
+    - put aside the [strawberry](flavour) candy
+    - sort out the sugus
+    - gather the sugus candies please
+
+- intent: pick_candy
+  examples: |
+    - i want the [strawberry](flavour) candy
+    - get me the [orange](flavour) sugus candy
+    - pick out a [blackcurrant](flavour) sugus
+    - pick up the candy
+    - get me a sugus
+    - choose the sugus candy
+    - select the [orange](flavour) candy please
+    - take the [blackcurrant](flavour) sugus for me
+
+- intent: inform
+  examples: |
+    - [strawberry](flavour)
+    - [orange](flavour)
+    - [blackcurrant](flavour)
+    - [lemon](flavour)
+
+- intent: out_of_scope
+  examples: |
+    - hello who are you?
+    - are you a bot?
+    - please don't kill me
+    - how are you?
+    - red color
+    - blue color
+    - purple color
+    - pink color
+    - fly me to the moon
+    - do a dance for me
+    - get me a cap
+    - i want a cab
+    
+- intent: stop
+  examples: |
+    - i don't want it anymore
+    - stop
+    - never mind
+    - please stop
+    - i want to stop
+    - stop the form
+    - stop your action
+
+- synonym: candy
+  examples: |
+    - sugus
+    - sugus candy
+    - confectionery
+    - confection

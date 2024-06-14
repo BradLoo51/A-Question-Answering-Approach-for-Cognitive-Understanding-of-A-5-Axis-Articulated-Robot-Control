@@ -1,0 +1,60 @@
+version: '3.1'
+
+intents:
+- get_cup
+- inform
+- pick_candy
+- sort_candy
+- stop
+- out_of_scope
+
+entities:
+- flavour
+
+slots:
+  flavour:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: flavour
+
+forms:
+  simple_pick_form:
+    ignored_intents:
+    - get_cup
+    - sort_candy
+    required_slots:
+    - flavour
+
+  simple_sort_form:
+    ignored_intents:
+    - get_cup
+    - pick_candy
+    required_slots:
+    - flavour
+
+responses:
+  utter_sort_candy:
+  - text: Sorting the {flavour} candy
+  utter_pick_candy:
+  - text: Picking the {flavour} candy
+  utter_ask_flavour:
+  - text: What flavour of candy?
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+  utter_stop:
+  - text: Stopping Action
+  utter_rasa_end:
+  - text: RASA_END
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+actions:
+- action_reset_candy_slot
+- validate_simple_pick_form
+- validate_simple_sort_form
+- action_sort_candy
+- action_pick_candy
+- action_pick_cup

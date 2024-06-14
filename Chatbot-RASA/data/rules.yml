@@ -1,0 +1,92 @@
+version: "3.1"
+
+rules:
+
+- rule: Get a cup when user indicates it
+  steps:
+  - intent: get_cup
+  - action: action_pick_cup
+
+- rule: Activate Sort sugus candy based on flavours
+  steps:
+  - intent: sort_candy
+  - action: simple_sort_form
+  - active_loop: simple_sort_form
+
+- rule: Submit Sort sugus
+  condition:
+  - active_loop: simple_sort_form
+  steps:
+  - action: simple_sort_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_sort_candy
+  - action: action_sort_candy
+  - action: action_reset_candy_slot
+  - action: utter_rasa_end
+
+
+- rule: Activate Pick sugus candy based on flavours
+  steps:
+  - intent: pick_candy
+  - action: simple_pick_form
+  - active_loop: simple_pick_form
+
+- rule: Submit Pick sugus
+  condition:
+  - active_loop: simple_pick_form
+  steps:
+  - action: simple_pick_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_pick_candy
+  - action: action_pick_candy
+  - action: action_reset_candy_slot
+  - action: utter_rasa_end
+
+- rule: Doesn't want to continue picking candy
+  condition:
+    - active_loop: simple_pick_form
+  steps:
+  - intent: stop
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_rasa_end
+
+- rule: Doesn't want to continue sorting candy
+  condition:
+    - active_loop: simple_sort_form
+  steps:
+  - intent: stop
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_rasa_end
+
+- rule: Giving out_of_scope intent during picking form
+  condition:
+    - active_loop: simple_pick_form
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: simple_pick_form
+
+- rule: Stop Action
+  steps:
+  - intent: stop
+  - action: utter_stop
+
+- rule: out_of_scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: No proper intents
+  steps:
+  - intent: nlu_fallback
+  - action: utter_out_of_scope
