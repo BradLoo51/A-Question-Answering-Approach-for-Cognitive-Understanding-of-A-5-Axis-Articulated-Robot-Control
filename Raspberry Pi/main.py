@@ -54,7 +54,7 @@ class client(Thread):
         toCupTheta = np.array([-0.9, 0.8, -1.384, 0.7, 1.571]) # Towards to cup for placing
         devToCupTheta = np.array([-0.6, 1.4, -1., 1.2, 1.571]) # Retract backwards after placing object
         endTheta = np.array([0., 3.142, -2.973, -0.76, 1.571]) # Ending Position == Arduino Default Position
-        nextActionTheta = np.array([0., 2.3, -2.3, 0., 1.571]) # Position for continuing next action
+        nextActionTheta = np.array([0., 2.3, -2.3, -0.4, 1.571]) # Position for continuing next action
 
         # Initial Configuration to allow IK to find the desired new configuration
         initialTheta = np.array([0., 1., -2., 1., 1.5])
@@ -113,12 +113,12 @@ class client(Thread):
                     convTheta = mapAngle(endTheta, 180)
                     servoWrite(convTheta, ser)
                     ser.read()
-                    time.sleep(3)
+                    time.sleep(2)
                 
                 for box in boxes:
 
                     if self.work == True:
-                        if self.index == int(box.cls[0]) and int(box.conf[0]) >= 0.9:
+                        if self.index == int(box.cls[0]) and int(box.conf[0]) >= 0.85:
                             # Finding the coordinates of the objects
                             x1, y1, x2, y2 = box.xyxy[0]
                             midX = (x1 + x2) / 2
@@ -189,7 +189,7 @@ class client(Thread):
                                 convTheta = mapAngle(endTheta, 180)
                                 servoWrite(convTheta, ser)
                                 ser.read()
-                                time.sleep(3)
+                                time.sleep(2)
                                 
                             break
                         
