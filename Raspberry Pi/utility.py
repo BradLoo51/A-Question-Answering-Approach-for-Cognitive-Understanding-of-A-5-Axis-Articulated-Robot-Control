@@ -22,18 +22,6 @@ def mapAngle(theta, theta6):
 
     return np.array([theta1, theta2, theta3, theta4, theta5, theta6])
 
-def checkAngle(theta):
-    if theta[0] > 1.571 or theta[0] < -1.571:
-        print("Angle 1 Out of Reach")
-    if theta[1] > 3.142 or theta[1] < 0:
-        print("Angle 2 Out of Reach")
-    if theta[2] > 0 or theta[2] < -3.142:
-        print("Angle 3 Out of Reach")
-    if theta[3] > 1.571 or theta[3] < -1.571:
-        print("Angle 4 Out of Reach")
-    if theta[4] > 3.142 or theta[4] < 0:
-        print("Angle 5 Out of Reach")
-
 def servoWrite(params, ser):
     degree = ""
     for angle in params:
