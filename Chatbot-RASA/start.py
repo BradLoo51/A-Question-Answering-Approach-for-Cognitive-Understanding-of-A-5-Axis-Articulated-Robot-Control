@@ -25,6 +25,7 @@ def takeCommand():
     '''
     r = sr.Recognizer()
     with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source)
         print("Listening...", end="")
         audio = r.listen(source)
         query = ""
