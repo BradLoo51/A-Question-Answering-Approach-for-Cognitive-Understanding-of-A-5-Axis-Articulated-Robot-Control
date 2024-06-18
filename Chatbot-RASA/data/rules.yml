@@ -6,6 +6,7 @@ rules:
   steps:
   - intent: get_cup
   - action: action_pick_cup
+  - action: utter_rasa_end
 
 - rule: Activate Sort sugus candy based on flavours
   steps:
@@ -75,6 +76,14 @@ rules:
   - intent: out_of_scope
   - action: utter_out_of_scope
   - action: simple_pick_form
+
+- rule: Giving out_of_scope intent during sorting form
+  condition:
+    - active_loop: simple_sort_form
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: simple_sort_form
 
 - rule: Stop Action
   steps:

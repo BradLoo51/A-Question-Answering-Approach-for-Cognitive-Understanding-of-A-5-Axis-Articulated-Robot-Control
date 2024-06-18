@@ -39,6 +39,7 @@ nlu:
     - pick out a [blackcurrant](flavour) sugus
     - pick up the candy
     - get me a sugus
+    - get me that sugus
     - choose the sugus candy
     - select the [orange](flavour) candy please
     - take the [blackcurrant](flavour) sugus for me
@@ -49,6 +50,7 @@ nlu:
     - [orange](flavour)
     - [blackcurrant](flavour)
     - [lemon](flavour)
+    - [blueberry](flavour)
 
 - intent: out_of_scope
   examples: |
