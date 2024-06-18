@@ -26,14 +26,13 @@ def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
-        print("Listening...", end="")
+        print("Listening...", end="", flush=True)
         audio = r.listen(source)
         query = ""
 
         try:
             print("Recognizing...", end="")
             query = r.recognize_google(audio, language='en-US')
-            # query = r.recognize_whisper(audio, language='en')
             print(f"User said: {query}")
 
         except Exception as e:

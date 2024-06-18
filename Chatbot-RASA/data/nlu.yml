@@ -66,6 +66,12 @@ nlu:
     - do a dance for me
     - get me a cap
     - i want a cab
+    - thought that candy
+    - get me that code
+    - get that car
+    - erase that candy
+    - get me a call
+    - give me the
     
 - intent: stop
   examples: |
