@@ -49,7 +49,7 @@ class ValidateSimpleSortForm(FormValidationAction):
         """Validate `flavour` value."""
 
         if slot_value.lower() not in ALLOWED_FLAVOUR:
-            dispatcher.utter_message(text=f"We only have strawberry, orange, and lemon candies.")
+            dispatcher.utter_message(text=f"We only have strawberry, orange, and blackcurrant candies.")
             return {"flavour": None}
         
         return {"flavour": slot_value}

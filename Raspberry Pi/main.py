@@ -38,6 +38,7 @@ model = YOLO("yolov8.onnx", task='detect')
 cap = cv2.VideoCapture(0)
 cap.set(3, 640)
 cap.set(4, 480)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
 class client(Thread):
     def __init__(self, socket, address):
@@ -49,6 +50,7 @@ class client(Thread):
         self.object = None
         self.index = None
         self.work = False # Decide whether the robotic arm should perform an action
+        self.delay = False
         
     def run(self):
         toCupTheta = np.array([-0.9, 0.95, -1.25, 0.6, 1.571]) # Towards to cup for placing
@@ -76,7 +78,11 @@ class client(Thread):
                 pass
             
             # Open-CV
-            success, img = cap.read()
+            sucess, img = cap.read()
+            
+            if self.delay == True:
+                self.delay = False
+                continue
 
             # Frame Transformation
             tl = (32, 98)
@@ -186,6 +192,7 @@ class client(Thread):
                             
                             # Return the configuration back to the Intiial Configuration
                             robot.forward(initialTheta)
+                            self.delay = True
                             
                             if self.action != 'SortCandy':
                                 self.work = False
